@@ -1,7 +1,6 @@
 {
-  "name": "express-template",
+  "name": "odin-members-only",
   "version": "1.0.0",
-  "description": "Includes Express, EJS, express-validator, &amp; pg. May update in the future with more.",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
@@ -11,20 +10,23 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/deepend15/node-express-template.git"
+    "url": "git+https://github.com/deepend15/odin-members-only.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "bugs": {
-    "url": "https://github.com/deepend15/node-express-template/issues"
+    "url": "https://github.com/deepend15/odin-members-only/issues"
   },
-  "homepage": "https://github.com/deepend15/node-express-template#readme",
+  "homepage": "https://github.com/deepend15/odin-members-only#readme",
   "dependencies": {
     "ejs": "^4.0.1",
     "express": "^5.2.1",
+    "express-session": "^1.19.0",
     "express-validator": "^7.3.1",
-    "pg": "^8.18.0"
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "pg": "^8.20.0"
   }
 }
