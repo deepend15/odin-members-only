@@ -1,4 +1,3 @@
-// update filename to name of controller in question (i.e. "usersController.js")
 import * as db from "../db/queries.js";
 import { body, validationResult, matchedData } from "express-validator";
 
@@ -10,4 +9,15 @@ import { body, validationResult, matchedData } from "express-validator";
 
 // define async functions for querying db & rendering views
 
-// export { functions }
+const signUpGet = (req, res) => {
+  res.render("signUp", {
+    title: "Sign Up",
+    firstNameValue: "",
+    lastNameValue: "",
+    usernameValue: "",
+    passwordValue: "",
+    confirmPasswordValue: "",
+  });
+};
+
+export { signUpGet };
