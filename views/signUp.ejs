@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="/styles.css">
     <title><%= title %></title>
   </head>
   <body>
@@ -13,6 +13,7 @@
       Create your account by entering the information below. All fields are
       required.
     </p>
+    <%- include('partials/errors') %>
     <form action="/sign-up" method="POST">
       <p>
         <label for="firstName">First name:</label>
@@ -61,7 +62,6 @@
             type="password"
             name="password"
             id="password"
-            pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,255}"
             value="<%= passwordValue %>"
             required
           />
@@ -73,7 +73,6 @@
           type="password"
           name="confirmPassword"
           id="confirmPassword"
-          pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,255}"
           value="<%= confirmPasswordValue %>"
           required
         />

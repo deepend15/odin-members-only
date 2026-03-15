@@ -1,0 +1,8 @@
+<% if (locals.errors) { %>
+  <p class="error">Please correct the following errors:</p>
+  <ul>
+    <% errors.forEach(function(error) { %>
+      <li class="error"><%= error.msg %></li>
+    <% }); %>
+  </ul>
+<% } %>

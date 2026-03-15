@@ -1,3 +1,6 @@
 <nav>
   <a href="/">Home</a>
+  <% if (locals.currentUser) { %>
+   <a href="/log-out">Log out</a>
+  <% } %>
 </nav>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <%- include('partials/nav') %>
+    <h1><%= title %></h1>
+    <% if (errorMessage) { %>
+      <p class="error"><%= errorMessage %></p>
+    <% } %>
+    <form action="/log-in" method="POST">
+      <p>
+        <label for="username">Username:</label>
+        <input
+          id="username"
+          name="username"
+          type="text"
+          value="<%= usernameValue %>"
+          required
+        />
+      </p>
+      <p>
+        <label for="password">Password:</label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          value="<%= passwordValue %>"
+          required
+        />
+      </p>
+      <button type="submit">Log In</button>
+    </form>
+  </body>
+</html>

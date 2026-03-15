@@ -4,11 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/styles.css" />
-    <!-- to prevent browser from "getting" favicon -->
-    <link rel="icon" href="data:," />
     <title><%= title %></title>
   </head>
-  <h1><%= title %></h1>
-  <p><a href="/sign-up">Sign up</a> for an account in order to post messages!</p>
-  <body></body>
+  <body>
+    <%- include('partials/nav') %>
+    <h1><%= title %></h1>
+    <% if (locals.currentUser) { %>
+      <h2>Hello, <%= currentUser.username %>!</h2>
+    <% } else { %>
+      <p><a href="/sign-up">Sign up</a> for an account in order to post messages!</p>
+      <p>If you already have an account, <a href="/log-in">log in</a> here!</p>
+    <% } %>
+  </body>
 </html>
