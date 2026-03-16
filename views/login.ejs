@@ -8,35 +8,44 @@
   </head>
   <body>
     <%- include('partials/nav') %>
-    <h1><%= title %></h1>
-    <% if (errorMessage) { %>
-      <p class="error"><%= errorMessage %></p>
-    <% } %>
-    <form action="/log-in" method="POST">
-      <p>
-        <label for="username">Username:</label>
-        <input
-          id="username"
-          name="username"
-          type="text"
-          value="<%= usernameValue %>"
-          required
-        />
-      </p>
-      <p>
-        <label for="password">Password:</label>
-        <input
-          id="password"
-          name="password"
-          type="password"
-          value="<%= passwordValue %>"
-          required
-        />
-      </p>
-      <div class="buttons-div">
-        <button type="submit">Log In</button>
-        <a href="/">&lt;&lt; Cancel</a>
+    <div class="login-container">
+      <div class="login-div">
+        <h1><%= title %></h1>
+        <form class="login-form" action="/log-in" method="POST">
+          <p>
+            <label for="username">Username:</label>
+            <input
+              id="username"
+              name="username"
+              type="text"
+              value="<%= usernameValue %>"
+              required
+            />
+          </p>
+          <p>
+            <label for="password">Password:</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              value="<%= passwordValue %>"
+              required
+            />
+          </p>
+          <% if (errorMessage) { %>
+            <div class="login-error-div">
+              <p class="login-error"><%= errorMessage %></p>
+              <% if (errorMessage.startsWith("Username")) { %>
+                <p><a href="/sign-up">Sign up</a> for an account.</p>
+              <% } %>
+            </div>
+          <% } %>
+          <div class="buttons-div">
+            <button type="submit">Log In</button>
+            <a href="/">&lt;&lt; Cancel</a>
+          </div>
+        </form>
       </div>
-    </form>
+    </div>
   </body>
 </html>

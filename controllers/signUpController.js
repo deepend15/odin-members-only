@@ -31,7 +31,7 @@ const validateUser = [
       if (dupeUser) {
         throw new Error;
       }
-    }).withMessage("Username already in use. Please choose a different username."),
+    }).withMessage("Username already in use. Please choose a different username"),
   body("password")
     .notEmpty().withMessage(`Password ${emptyErr}`)
     .isLength({ min: 8 }).withMessage("Password must be at least 8 characters.")

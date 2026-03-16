@@ -95,8 +95,17 @@ nav {
   justify-content: space-between;
 }
 
-.index-div {
+.index-container,
+.sign-up-container,
+.login-container {
+  display: grid;
+  justify-items: center;
   padding: 15px;
+}
+
+.index-div,
+.sign-up-div,
+.login-div {
   display: grid;
   justify-items: center;
   gap: 20px;
@@ -115,16 +124,7 @@ h1 {
   line-height: 1.5;
 }
 
-.sign-up-container {
-  display: grid;
-  justify-items: center;
-}
-
 .sign-up-div {
-  padding: 15px;
-  display: grid;
-  justify-items: center;
-  gap: 20px;
   max-width: max-content;
 }
 
@@ -134,8 +134,9 @@ h1 {
   font-size: 1.7rem;
 }
 
-.sign-up-form {
-  margin-top: 12px;
+.sign-up-form,
+.login-form {
+  margin-top: 8px;
   display: grid;
   gap: 16px;
 }
@@ -153,10 +154,14 @@ h1 {
   margin-bottom: 5px;
 }
 
-.sign-up-form > p {
+.sign-up-form > p,
+.login-form > p {
   display: flex;
-  gap: 5px;
   align-items: center;
+}
+
+.sign-up-form > p {
+  gap: 5px;
 }
 
 .sign-up-form > p > label {
@@ -167,7 +172,8 @@ h1 {
   padding: 3px;
 }
 
-.sign-up-form input:focus-visible {
+.sign-up-form input:focus-visible,
+.login-form input:focus-visible {
   outline: 2px solid purple;
   border-radius: 3px;
 }
@@ -209,4 +215,39 @@ h1 {
   background-color: rgb(236, 236, 248);
   color: rgb(84, 1, 84);
   font-weight: 500;
+}
+
+.login-form {
+  justify-items: center;
+}
+
+.login-form > p {
+  gap: 12px;
+  font-size: 1.7rem;
+  width: 100%;
+}
+
+.login-form > p > label {
+  width: 30%;
+}
+
+.login-form input {
+  padding: 4px;
+}
+
+.login-error-div {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  margin-bottom: -10px;
+}
+
+.login-error {
+  font-weight: 500;
+  color: red;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2rem;
 }
