@@ -8,12 +8,16 @@
   </head>
   <body>
     <%- include('partials/nav') %>
-    <h1><%= title %></h1>
-    <% if (locals.currentUser) { %>
-      <h2>Hello, <%= currentUser.username %>!</h2>
-    <% } else { %>
-      <p><a href="/sign-up">Sign up</a> for an account in order to post messages!</p>
-      <p>If you already have an account, <a href="/log-in">log in</a> here!</p>
-    <% } %>
+    <div class="index-div">
+      <h1><%= title %></h1>
+      <% if (locals.currentUser) { %>
+        <h2>Hello, <%= currentUser.username %>!</h2>
+      <% } else { %>
+        <div class="info-div">
+          <p>Want to post messages of your own? <a href="/sign-up">Sign up</a> for an account!</p>
+          <p>Or, <a href="/log-in">log in</a> to your existing account.</p>
+        </div>
+      <% } %>
+    </div>
   </body>
 </html>
