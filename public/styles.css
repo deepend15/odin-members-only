@@ -114,13 +114,15 @@ nav a:link {
 .index-div,
 .sign-up-div,
 .login-div,
-.stories-div {
+.stories-div,
+.create-story-div {
   display: grid;
   justify-items: center;
   gap: 20px;
 }
 
-.index-div {
+.index-div,
+.create-story-div {
   width: min(1000px, 85%);
 }
 
@@ -280,4 +282,24 @@ button {
   justify-items: center;
   gap: 15px;
   font-size: 1.8rem;
+}
+
+.create-story-div {
+  font-size: 1.8rem;
+}
+
+.warning-div {
+  width: min(700px, 100%);
+  font-size: 1.6rem;
+  text-align: center;
+  line-height: 1.5;
+  padding: 12px;
+  border: 1px solid black;
+  background-color: rgb(236, 236, 248);
+  color: rgb(84, 1, 84);
+  border-radius: 6px;
+}
+
+.warning-div > a:link {
+  text-decoration: underline;
 }

@@ -7,4 +7,10 @@ const storiesGet = (req, res) => {
   });
 };
 
-export { storiesGet };
+const createStoryGet = (req, res) => {
+  res.render("stories/createStory", {
+    title: "Create Story",
+  });
+};
+
+export { storiesGet, createStoryGet };
