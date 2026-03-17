@@ -6,6 +6,7 @@ import passport from "passport";
 import pool from "./db/pool.js";
 import signUpRouter from "./routes/signUpRouter.js";
 import loginRouter from "./routes/loginRouter.js";
+import logoutRouter from "./routes/logoutRouter.js";
 import storiesRouter from "./routes/storiesRouter.js";
 import indexRouter from "./routes/indexRouter.js";
 import { CustomNotFoundError } from "./errors/CustomNotFoundError.js";
@@ -56,6 +57,7 @@ app.get("/favicon.ico", (req, res) => {
 
 app.use("/sign-up", signUpRouter);
 app.use("/log-in", loginRouter);
+app.use("/log-out", logoutRouter);
 app.use("/stories", storiesRouter);
 app.use("/", indexRouter);
 

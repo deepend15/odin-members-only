@@ -130,7 +130,7 @@ h1 {
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: 2.2rem;
 }
 
 .info-div {
@@ -274,8 +274,8 @@ button {
   font-size: 1.8rem;
 }
 
-
-.page-not-found-div {
+.page-not-found-div,
+.logout-div {
   display: grid;
   justify-items: center;
   gap: 15px;

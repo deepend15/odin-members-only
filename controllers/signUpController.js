@@ -81,7 +81,7 @@ const signUpPost = [
     const user = await db.getUserByUsername(username);
     req.login(user, (err) => {
       if (err) return next(err);
-      return res.redirect("/");
+      return res.redirect("/stories");
     })
   },
 ];

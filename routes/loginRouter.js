@@ -40,7 +40,7 @@ loginRouter.post("/", (req, res, next) => {
       if (err) {
         return next(err);
       }
-      return res.redirect("/");
+      return res.redirect("/stories");
     });
   })(req, res, next);
 });

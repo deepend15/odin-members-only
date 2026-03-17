@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/styles.css" />
-    <title><%= title %></title>
+    <title><%= title %> | AnonTales</title>
   </head>
   <body>
     <%- include('../partials/nav') %>
@@ -12,6 +12,7 @@
       <div class="stories-div">
         <h1><%= title %></h1>
         <% if (locals.currentUser) { %>
+          <h2>&#128075; Hello, <%= currentUser.username %>!</h2>
           <div class="story-buttons-div">
             <a href="/stories?user=<%= currentUser.username %>"><button>My stories</button></a>
             <a href="/stories/create-story"><button>Create new story</button></a>
@@ -19,6 +20,8 @@
           <% if (!currentUser.member) { %>
             <p>&#128064; tip: If you want to see who created each story, <a href="/join-the-club">join the anonClub</a>!</p>
           <% } %>
+        <% } else { %>
+          <p>Want to create and share your own stories? <a href="/sign-up">Sign up</a> or <a href="/log-in">log in</a>!</p>
         <% } %>
       </div>
     </div>
