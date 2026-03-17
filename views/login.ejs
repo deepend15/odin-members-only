@@ -11,40 +11,45 @@
     <div class="login-container">
       <div class="login-div">
         <h1><%= title %></h1>
-        <form class="login-form" action="/log-in" method="POST">
-          <p>
-            <label for="username">Username:</label>
-            <input
-              id="username"
-              name="username"
-              type="text"
-              value="<%= usernameValue %>"
-              required
-            />
-          </p>
-          <p>
-            <label for="password">Password:</label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              value="<%= passwordValue %>"
-              required
-            />
-          </p>
-          <% if (errorMessage) { %>
-            <div class="login-error-div">
-              <p class="login-error"><%= errorMessage %></p>
-              <% if (errorMessage.startsWith("Username")) { %>
-                <p><a href="/sign-up">Sign up</a> for an account.</p>
-              <% } %>
+        <% if (locals.currentUser) { %>
+          <p>You are already logged in as <%= currentUser.username %>!</p>
+          <p>Visit the <a href="/stories">story depository</a>, or <a href="/log-out">log out</a> if you wish to log in to a different account.</p>
+        <% } else { %>
+          <form class="login-form" action="/log-in" method="POST">
+            <p>
+              <label for="username">Username:</label>
+              <input
+                id="username"
+                name="username"
+                type="text"
+                value="<%= usernameValue %>"
+                required
+              />
+            </p>
+            <p>
+              <label for="password">Password:</label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                value="<%= passwordValue %>"
+                required
+              />
+            </p>
+            <% if (errorMessage) { %>
+              <div class="login-error-div">
+                <p class="login-error"><%= errorMessage %></p>
+                <% if (errorMessage.startsWith("Username")) { %>
+                  <p><a href="/sign-up">Sign up</a> for an account.</p>
+                <% } %>
+              </div>
+            <% } %>
+            <div class="buttons-div">
+              <button type="submit">Log In</button>
+              <a href="/">&lt;&lt; Cancel</a>
             </div>
-          <% } %>
-          <div class="buttons-div">
-            <button type="submit">Log In</button>
-            <a href="/">&lt;&lt; Cancel</a>
-          </div>
-        </form>
+          </form>
+        <% } %>
       </div>
     </div>
   </body>

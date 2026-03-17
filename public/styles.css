@@ -95,6 +95,16 @@ nav {
   justify-content: space-between;
 }
 
+nav a,
+nav a:link {
+  color: rgb(68, 6, 68);
+}
+
+.nav-right-side {
+  display: flex;
+  gap: 25px;
+}
+
 .index-container,
 .sign-up-container,
 .login-container {
@@ -111,6 +121,10 @@ nav {
   gap: 20px;
 }
 
+.index-div {
+  width: min(1000px, 85%);
+}
+
 h1 {
   font-size: 2.4rem;
   font-weight: bold;
@@ -119,7 +133,7 @@ h1 {
 .info-div {
   display: grid;
   justify-items: center;
-  gap: 8px;
+  gap: 15px;
   text-align: center;
   line-height: 1.5;
 }

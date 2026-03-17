@@ -3,7 +3,12 @@ import { body, validationResult, matchedData } from "express-validator";
 import bcrypt from "bcryptjs";
 
 const signUpGet = (req, res) => {
-  res.render("signUp", {
+  if (req.query.nav) {
+    return res.render("signUp/signUpOrLogIn", {
+      title: "Sign Up / Log In",
+    });
+  }
+  res.render("signUp/signUp", {
     title: "Sign Up",
     firstNameValue: "",
     lastNameValue: "",
@@ -60,7 +65,7 @@ const signUpPost = [
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).render("signUp", {
+      return res.status(400).render("signUp/signUp", {
         title: "Sign Up",
         firstNameValue: req.body.firstName,
         lastNameValue: req.body.lastName,

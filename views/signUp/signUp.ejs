@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <%- include('../partials/nav') %>
+    <div class="sign-up-container">
+      <div class="sign-up-div">
+        <h1><%= title %></h1>
+        <% if (locals.currentUser) { %>
+          <p>You already have an account, <%= currentUser.username %>!</p>
+          <p>Visit the <a href="/stories">story depository</a>, or <a href="/log-out">log out</a> if you wish to create a new account.</p>
+        <% } else { %>
+          <p>
+          Create your account by entering the information below. All fields are
+          required.
+          </p>
+          <%- include('../partials/errors') %>
+          <form class="sign-up-form" action="/sign-up" method="POST">
+            <p>
+              <label for="firstName">First name:</label>
+              <input
+                type="text"
+                name="firstName"
+                id="firstName"
+                maxlength="255"
+                value="<%= firstNameValue %>"
+                required
+              />
+            </p>
+            <p>
+              <label for="lastName">Last name:</label>
+              <input
+                type="text"
+                name="lastName"
+                id="lastName"
+                maxlength="255"
+                value="<%= lastNameValue %>"
+                required
+              />
+            </p>
+            <p>
+              <label for="username">Username:</label>
+              <input
+                type="text"
+                name="username"
+                id="username"
+                maxlength="255"
+                value="<%= usernameValue %>"
+                required
+              />
+            </p>
+            <div class="password-div">
+              <p>Password must meet the following requirements:</p>
+              <ul>
+                <li>At least 8 characters</li>
+                <li>Contain at least 1 lowercase letter</li>
+                <li>Contain at least 1 uppercase letter</li>
+                <li>Contain at least 1 number</li>
+              </ul>
+            </div>
+            <p>
+              <label for="password">Password:</label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                value="<%= passwordValue %>"
+                required
+              />
+            </p>
+            <p>
+              <label for="confirmPassword">Confirm password:</label>
+              <input
+                type="password"
+                name="confirmPassword"
+                id="confirmPassword"
+                value="<%= confirmPasswordValue %>"
+                required
+              />
+            </p>
+            <div class="buttons-div">
+              <button>Sign Up</button>
+              <a href="/">&lt;&lt; Cancel</a>
+            </div>
+          </form>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>

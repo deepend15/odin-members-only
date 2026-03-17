@@ -1,6 +1,12 @@
 <nav>
-  <a href="/" class="homepage-link">Message Board</a>
-  <% if (locals.currentUser) { %>
-   <a href="/log-out">Log out</a>
-  <% } %>
+  <a href="/" class="homepage-link">AnonTales</a>
+  <div class="nav-right-side">
+    <a href="/stories">Stories</a>
+    <% if (locals.currentUser) { %>
+      <a href="/join-the-club">anonClub</a>
+      <a href="/log-out">Log out</a>
+    <% } else { %>
+      <a href="/sign-up?nav=true">Sign up / log in</a>
+    <% } %>
+  </div>
 </nav>

@@ -13,7 +13,7 @@ indexRouter.get("/log-out", (req, res, next) => {
 
 indexRouter.get("/", (req, res) => {
   res.render("index", {
-    title: "Message Board",
+    title: "AnonTales",
   });
 });
 
