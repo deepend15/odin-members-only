@@ -24,6 +24,8 @@ loginRouter.get("/", (req, res) => {
 });
 
 loginRouter.post("/", (req, res, next) => {
+  // passport.authenticate() func below is more verbose to allow for more control, such as setting the req.session variables
+  // see callback info here: https://github.com/jwalton/passport-api-docs?tab=readme-ov-file#passportauthenticatestrategyname-options-callback
   passport.authenticate("local", (err, user, info) => {
     if (err) {
       return next(err);
