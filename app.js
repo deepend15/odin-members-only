@@ -6,6 +6,7 @@ import passport from "passport";
 import pool from "./db/pool.js";
 import signUpRouter from "./routes/signUpRouter.js";
 import loginRouter from "./routes/loginRouter.js";
+import storiesRouter from "./routes/storiesRouter.js";
 import indexRouter from "./routes/indexRouter.js";
 import { CustomNotFoundError } from "./errors/CustomNotFoundError.js";
 
@@ -55,6 +56,7 @@ app.get("/favicon.ico", (req, res) => {
 
 app.use("/sign-up", signUpRouter);
 app.use("/log-in", loginRouter);
+app.use("/stories", storiesRouter);
 app.use("/", indexRouter);
 
 // 404 error
@@ -67,7 +69,7 @@ app.use((err, req, res, next) => {
   console.log("Request URL:", req.url);
   console.error(err);
   if (err.statusCode) {
-    res.status(err.statusCode).send(`${err.statusCode} Error: ${err.message}`);
+    res.status(err.statusCode).render("404error");
   } else {
     res.status(500).send("Internal Server Error");
   }

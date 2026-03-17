@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <%- include('../partials/nav') %>
+    <div class="container">
+      <div class="stories-div">
+        <h1><%= title %></h1>
+        <% if (locals.currentUser) { %>
+          <div class="story-buttons-div">
+            <a href="/stories?user=<%= currentUser.username %>"><button>My stories</button></a>
+            <a href="/stories/create-story"><button>Create new story</button></a>
+          </div>
+          <% if (!currentUser.member) { %>
+            <p>&#128064; tip: If you want to see who created each story, <a href="/join-the-club">join the anonClub</a>!</p>
+          <% } %>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>

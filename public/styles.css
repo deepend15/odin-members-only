@@ -72,11 +72,11 @@ a:link {
     text-decoration: none;
   }
 
-  .buttons-div > button:hover {
+  button:hover {
     background-color: rgb(225, 225, 247);
   }
 
-  .buttons-div > button:active {
+  button:active {
     background-color: rgb(208, 208, 241);
     border-style: inset;
   }
@@ -113,7 +113,8 @@ nav a:link {
 
 .index-div,
 .sign-up-div,
-.login-div {
+.login-div,
+.stories-div {
   display: grid;
   justify-items: center;
   gap: 20px;
@@ -224,7 +225,7 @@ h2 {
   font-size: 1.8rem;
 }
 
-.buttons-div > button {
+button {
   padding: 8px 25px;
   border: 2px outset rgb(169, 76, 169);
   border-radius: 15px;
@@ -262,4 +263,21 @@ h2 {
   font-weight: 500;
   color: red;
   text-align: center;
+}
+
+.story-buttons-div {
+  display: flex;
+  gap: 20px;
+}
+
+.story-buttons-div button {
+  font-size: 1.8rem;
+}
+
+
+.page-not-found-div {
+  display: grid;
+  justify-items: center;
+  gap: 15px;
+  font-size: 1.8rem;
 }
