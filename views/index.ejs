@@ -8,7 +8,7 @@
   </head>
   <body>
     <%- include('partials/nav') %>
-    <div class="index-container">
+    <div class="container">
       <div class="index-div">
         <% if (locals.currentUser) { %>
           <h1>Welcome back to <%= title %>, <%= currentUser.username %>!</h1>
@@ -16,7 +16,7 @@
           <h1>Welcome to <%= title %>!</h1>
         <% } %>
         <div class="info-div">
-          <p>Here, we operate as a space for users to create and share anonymous "stories." Although we refer to them as stories here, they can be anything - raw, genuine confessionals, lighthearted anecdotes, creative works of fiction - and anything in between! There are no limits as to what you can post (however, be advised that NO hate speech is tolerated), so feel free to stretch your creative muscles, or get that heavy weight off your chest!</p>
+          <p>Here, we operate as a space for users to create and share anonymous "stories." Although we refer to them as stories here, they can be anything - raw, genuine confessionals, lighthearted anecdotes, creative works of fiction - and anything in between! There are no limits as to what you can post (however, be advised that NO hate speech is tolerated), so feel free to flex your creative muscles, or get that heavy weight off your chest!</p>
           <% if (locals.currentUser) { %>
             <p>Visit the <a href="/stories">story depository</a> to create/read stories!</p>
             <p>If you're not a member of the anonClub, <a href="/join-the-club">join today</a> &#128064;</p>
@@ -24,8 +24,6 @@
             <p>If you don't have an account with us, <a href="/sign-up">sign up</a> today! Or, you can visit our <a href="/stories">story depository</a> to read stories.</p> 
             <p>If you already have an account, <a href="/log-in">log in</a> now!</p>
           <% } %>
-        </div>
-        <div class="messages-div">
         </div>
       </div>
     </div>
