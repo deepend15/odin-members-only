@@ -19,4 +19,26 @@ async function addUser(firstName, lastName, username, password) {
   );
 }
 
-export { getUserByUsername, getUserByID, addUser };
+async function addStory(userID, title, story) {
+  await pool.query(
+    "INSERT INTO stories (user_id, title, story, time) VALUES ($1, $2, $3, CURRENT_TIMESTAMP)",
+    [userID, title, story],
+  );
+}
+
+async function getAllStories() {
+  const { rows } = await pool.query(
+    `SELECT
+      stories.id AS story_id,
+      users.username,
+      stories.title,
+      stories.story,
+      stories.time
+    FROM stories
+    INNER JOIN users ON users.id = stories.user_id
+    ORDER BY time`,
+  );
+  return rows;
+}
+
+export { getUserByUsername, getUserByID, addUser, addStory, getAllStories };

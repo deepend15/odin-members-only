@@ -11,13 +11,58 @@
     <div class="container">
       <div class="create-story-div">
         <h1><%= title %></h1>
+        <%- include('../partials/errors') %>
         <% if (!locals.currentUser) { %>
           <%- include('../partials/noAccess') %>
         <% } else { %>
-          <p>Submit your story below!</p>
-          <p class="warning-div">Be aware! anonClub members will be able to see that your username created this story, and the date that you created it. No other details of your account will be shared with anonClub members, and no other visitors to this site will be able to see this information. For more information, visit the anonClub <a href="/join-the-club">info page</a>.</p>
-          <% } %>        
-          <a href="/stories">&lt;&lt; Story depository</a>
+          <div class="create-story-container">
+            <div class="create-story-left">
+              <div class="warning">
+                <p>Be aware! anonClub members will be able to see that your username created this story, and the date that you created it. No other details of your account will be shared with anonClub members, and no other visitors to this site will be able to see this information. For more information, visit the anonClub <a href="/join-the-club">info page</a>.</p>
+              </div>
+              <div class="warning">
+                <p>While we encourage you to share whatever you please, we reserve the right to remove any posts containing hate speech or any information otherwise intended to cause harm.</p>
+              </div>
+            </div>
+            <div class="create-story-right">
+              <form class="create-story-form" action="/stories/create-story" method="POST">
+                <p>
+                  <label for="title">Title:</label>
+                  <input
+                    type="text"
+                    name="title"
+                    id="title"
+                    maxlength="75"
+                    placeholder="75 characters or less..."
+                    value="<% if (locals.titleValue) { %><%= titleValue %><% } %>"
+                    autofocus
+                    required
+                  >
+                </p>
+                <label for="story">Type your story here:</label>
+                <% if (locals.storyText) { %>
+                  <textarea
+                    name="story"
+                    id="story"
+                    rows="6"
+                    placeholder="Share whatever you want!"
+                    required
+                  ><%= storyText %></textarea>
+                <% } else { %>
+                  <textarea
+                    name="story"
+                    id="story"
+                    rows="6"
+                    placeholder="Share whatever you want!"
+                    required
+                  ></textarea>
+                <% } %>
+                <button>Submit story</button>
+              </form>
+            </div>
+          </div>
+        <% } %>        
+        <a href="/stories">&lt;&lt; Story depository</a>
       </div>
     </div>
   </body>
