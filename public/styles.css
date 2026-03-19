@@ -375,6 +375,11 @@ textarea:focus-visible {
   border-radius: 10px;
   box-shadow: 0 0 4px rgb(193, 193, 193);
   transition: transform 200ms;
+  position: relative;
+}
+
+.indiv-story-btn:active {
+  transform: scale(0.95);
 }
 
 .h3-div {
@@ -422,8 +427,16 @@ h3 {
   text-overflow: ellipsis;
 }
 
-.indiv-story-btn:active {
-  transform: scale(0.95);
+.secret-line {
+  position: absolute;
+  width: 100%;
+  padding: 0 15px 8px 15px;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  color: rgb(86, 128, 190);
+  font-style: italic;
 }
 
 .create-story-div {
@@ -506,6 +519,13 @@ h3 {
 
 .view-story-div h1 {
   line-height: 1.5;
+}
+
+.author-info {
+  display: grid;
+  gap: 10px;
+  /* justify-items: center; */
+  margin: -8px 0;
 }
 
 .view-story-div > pre {

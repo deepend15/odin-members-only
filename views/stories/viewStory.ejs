@@ -12,6 +12,14 @@
       <div class="view-story-div">
         <a href="/stories">&lt;&lt; Story depository</a>
         <h1><%= story.title %></h1>
+        <% if (locals.currentUser) { %>
+          <% if (locals.currentUser.member) { %>
+            <div class="author-info">
+              <p>Author: <%= story.username %></p>
+              <p>Submitted on: <%= story.formattedTimestamp %></p>
+            </div>
+          <% } %>
+        <% } %>
         <pre><%= story.story %></pre>
         <a class="border-credit" href="https://www.freepik.com/free-vector/golden-ornament-border-design-with-vintage-antique-look_425697877.htm#fromView=search&page=1&position=2&uuid=d7fc7824-5065-4e1f-b6c4-33ebabd7f9e9&query=Border">border by starline on Freepik</a>
       </div>

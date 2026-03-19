@@ -37,15 +37,11 @@
                     <span><%= story.title %></span>
                   </div>
                   <pre><%= story.story %></pre>
-                  <!-- <div class="secret-line">
-                    <p><%= story.username %></p>
-                    <p><%= story.time %></p>
-                  </div> -->
                   <% if (locals.currentUser) { %>
                     <% if (locals.currentUser.member) { %>
                       <div class="secret-line">
                       <p><%= story.username %></p>
-                      <p><%= story.time %></p>
+                      <p><%= story.formattedDate %></p>
                     </div>
                     <% } %>
                   <% } %>

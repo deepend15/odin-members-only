@@ -1,11 +1,15 @@
 import * as db from "../db/queries.js";
 import { body, validationResult, matchedData } from "express-validator";
+import { format } from "date-fns";
 import { CustomNotFoundError } from "../errors/CustomNotFoundError.js";
 
 const storiesGet = async (req, res) => {
   if (req.query.currentUser) {
     if (req.user) {
       const stories = await db.getStoriesByUserID(req.user.id);
+      stories.forEach((story) => {
+        story.formattedDate = format(story.time, "MM/dd/yyyy");
+      });
       return res.render("stories/stories", {
         title: "My Stories",
         stories: stories,
@@ -15,8 +19,10 @@ const storiesGet = async (req, res) => {
     }
   }
   const stories = await db.getAllStories();
+  stories.forEach((story) => {
+    story.formattedDate = format(story.time, "MM/dd/yyyy");
+  });
   console.log("Stories: ", stories);
-  console.log(stories[0].time);
   let h2Content;
   if (req.user) h2Content = `👋 Hello, ${req.user.username}!`;
   res.render("stories/stories", {
@@ -61,9 +67,7 @@ const createStoryPost = [
       title,
       story,
     );
-    console.log(
-      `Added: user ID ${activeUserID}, title: ${title}, story: ${story}, story ID ${storyID}`,
-    );
+    
     res.redirect(`/stories/view-story/${storyID}`);
   },
 ];
@@ -74,6 +78,7 @@ const viewStoryGet = async (req, res, next) => {
   if (!story) {
     return next(new CustomNotFoundError("Page not found."));
   }
+  story.formattedTimestamp = format(story.time, 'MMMM d, yyyy, h:mm a');
   res.render("stories/viewStory", {
     story: story,
   });
