@@ -149,7 +149,8 @@ nav a:link {
 .sign-up-div,
 .login-div,
 .stories-div,
-.create-story-div {
+.create-story-div,
+.view-story-div {
   display: grid;
   justify-items: center;
   gap: 20px;
@@ -162,6 +163,7 @@ nav a:link {
 h1 {
   font-size: 2.4rem;
   font-weight: bold;
+  text-align: center;
 }
 
 h2 {
@@ -473,4 +475,29 @@ h3 {
 .create-story-form button {
   justify-self: center;
   margin-top: 10px;
+}
+
+.view-story-div {
+  width: min(1000px, 85%);
+}
+
+.view-story-div h1 {
+  line-height: 1.5;
+}
+
+.view-story-div > pre {
+  width: 90%;
+  padding: 15px;
+  background-color: white;
+  font-family: inherit;
+  text-wrap: wrap;
+  line-height: 1.7;
+  border: 15px solid transparent;
+  border-image: url("/fancy-border.svg") 25% / 40px round;
+  background-clip: padding-box;
+}
+
+.border-credit {
+  margin-top: -10px;
+  font-size: 1.4rem;
 }

@@ -30,7 +30,7 @@
         <div class="stories-container">
           <% if (stories.length > 0) { %>
             <% stories.forEach((story) => { %>
-              <a href="/stories/view-story?id=<%= story.story_id %>">
+              <a href="/stories/view-story/<%= story.story_id %>">
                 <button class="indiv-story-btn">
                   <div class="h3-div">
                     <h3><%= story.title %></h3>

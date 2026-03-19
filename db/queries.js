@@ -19,11 +19,16 @@ async function addUser(firstName, lastName, username, password) {
   );
 }
 
-async function addStory(userID, title, story) {
+async function addStoryAndReturnStoryID(userID, title, story) {
   await pool.query(
     "INSERT INTO stories (user_id, title, story, time) VALUES ($1, $2, $3, CURRENT_TIMESTAMP)",
     [userID, title, story],
   );
+  const { rows } = await pool.query(
+    "SELECT id FROM stories WHERE user_id = $1 ORDER BY time DESC LIMIT 1",
+    [userID],
+  );
+  return rows[0].id;
 }
 
 async function getAllStories() {
@@ -36,7 +41,7 @@ async function getAllStories() {
       stories.time
     FROM stories
     INNER JOIN users ON users.id = stories.user_id
-    ORDER BY time`,
+    ORDER BY time DESC`,
   );
   return rows;
 }
@@ -52,17 +57,34 @@ async function getStoriesByUserID(id) {
     FROM stories
     INNER JOIN users ON users.id = stories.user_id
     WHERE stories.user_id = $1
-    ORDER BY time`,
+    ORDER BY time DESC`,
     [id],
   );
   return rows;
+}
+
+async function getStoryByStoryID(id) {
+  const { rows } = await pool.query(
+    `SELECT
+      stories.id AS story_id,
+      users.username,
+      stories.title,
+      stories.story,
+      stories.time
+    FROM stories
+    INNER JOIN users ON users.id = stories.user_id
+    WHERE stories.id = $1`,
+    [id],
+  );
+  return rows[0];
 }
 
 export {
   getUserByUsername,
   getUserByID,
   addUser,
-  addStory,
+  addStoryAndReturnStoryID,
   getAllStories,
   getStoriesByUserID,
+  getStoryByStoryID,
 };

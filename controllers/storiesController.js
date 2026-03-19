@@ -6,7 +6,7 @@ const storiesGet = async (req, res) => {
     if (req.user) {
       const stories = await db.getStoriesByUserID(req.user.id);
       return res.render("stories/stories", {
-        title: "Story Depository",
+        title: "My Stories",
         stories: stories,
         currentUserStories: true,
         h2Content: `${req.user.username} - My Stories`,
@@ -55,15 +55,24 @@ const createStoryPost = [
     }
     const { title, story } = matchedData(req);
     const activeUserID = req.user.id;
-    await db.addStory(activeUserID, title, story);
-    console.log(
-      `Added: user ID ${activeUserID}, title: ${title}, story: ${story}`,
+    const storyID = await db.addStoryAndReturnStoryID(
+      activeUserID,
+      title,
+      story,
     );
-    res.redirect("/stories");
+    console.log(
+      `Added: user ID ${activeUserID}, title: ${title}, story: ${story}, story ID ${storyID}`,
+    );
+    res.redirect(`/stories/view-story/${storyID}`);
   },
 ];
 
-// TODO NEXT:
-// --Change res.redirect logic in createStoryPost (& remove console.log)
+const viewStoryGet = async (req, res) => {
+  const { storyId } = req.params;
+  const story = await db.getStoryByStoryID(Number(storyId));
+  res.render("stories/viewStory", {
+    story: story,
+  });
+};
 
-export { storiesGet, createStoryGet, createStoryPost };
+export { storiesGet, createStoryGet, createStoryPost, viewStoryGet };
