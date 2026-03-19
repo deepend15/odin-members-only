@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title><%= title %> | AnonTales</title>
+  </head>
+  <body>
+    <%- include('../partials/nav') %>
+    <div class="container">
+      <% if (locals.currentUser) { %>
+        <% if (locals.currentUser.member) { %>
+          <div class="joined-anon-club-div">
+            <h1><%= title %> 🤫</h1>
+            <h2>🎉 Welcome to the anonClub, <%= currentUser.username %>! 🎉</h2>
+            <p>Visit the <a href="/stories">story depository</a> to take advantage of the benefits!</p>
+            <a href="/anonclub">&lt;&lt; anonClub info page</a>
+          </div>
+        <% } else { %>
+          <div class="no-access-div">
+            <p>🤔 Hmm, looks like you're in the wrong place.</p>
+            <a href="/anonclub">&lt;&lt; anonClub</a>
+            <a href="/stories">&lt;&lt; Story depository</a>
+          </div>
+        <% } %>
+      <% } else { %>
+        <%- include ('../partials/noAccess') %>
+      <% } %>
+    </div>
+    <%- include('../partials/footer') %>
+  </body>
+</html>

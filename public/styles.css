@@ -576,6 +576,13 @@ h3 {
   font-size: 1.7rem;
 }
 
+.error-line {
+  margin: 5px 0 -5px 0;
+  justify-self: center;
+  color: red;
+  font-weight: 500;
+}
+
 .anon-club-div > a {
   justify-self: center;
 }
@@ -587,4 +594,11 @@ h3 {
   width: 90%;
   line-height: 1.5;
   font-size: 1.4rem;
+}
+
+.joined-anon-club-div {
+  width: 95%;
+  display: grid;
+  gap: 25px;
+  justify-items: center;
 }

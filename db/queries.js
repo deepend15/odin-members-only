@@ -79,6 +79,10 @@ async function getStoryByStoryID(id) {
   return rows[0];
 }
 
+async function addMembershipStatus(userID) {
+  await pool.query("UPDATE users SET member = TRUE WHERE id = $1", [userID]);
+}
+
 export {
   getUserByUsername,
   getUserByID,
@@ -87,4 +91,5 @@ export {
   getAllStories,
   getStoriesByUserID,
   getStoryByStoryID,
+  addMembershipStatus,
 };

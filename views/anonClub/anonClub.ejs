@@ -29,17 +29,22 @@
               <form action="/anonclub" method="POST">
                 <p>
                   <label for="password">Password:</label>
-                  <input type="password" name="password" id="password" required>
+                  <input type="password" name="password" id="password" autofocus required>
                 </p>
-                <button type="button">Join the club!</button>
+                <button>Join the club!</button>
               </form>
+              <% if (locals.errors) { %>
+                <% errors.forEach(function(error) { %>
+                  <p class="error-line"><%= error.msg %></p class="error-line">
+                <% }); %>
+              <% } %>
             <% } else { %>
               <p>You're already a member of the anonClub, <%= currentUser.username %>! Enjoy those exclusive privileges!</p>
             <% } %>
           </div>
           <a href="/stories">&lt;&lt; Story depository</a>
         </div>
-        <p class="footnote"><sup>1</sup>If that sounds like a stretch, it's because the <em>real</em> reason the anonClub exists is because this is a just silly web development project, and I needed an opportunity to practice with different levels of user rights / authorization ¯\_(ツ)_/¯</p>
+        <p class="footnote"><sup>1</sup>If that sounds like a stretch, it's because the <em>real</em> reason the anonClub exists is because this is just a silly web development project, and I needed an opportunity to practice with different levels of user rights / authorization ¯\_(ツ)_/¯</p>
       <% } %>
     </div>
     <%- include('../partials/footer') %>
