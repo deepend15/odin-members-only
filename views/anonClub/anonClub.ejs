@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title><%= title %> | AnonTales</title>
+  </head>
+  <body>
+    <%- include('../partials/nav') %>
+    <div class="container">
+      <% if (!locals.currentUser) { %>
+        <%- include('../partials/noAccess') %>
+      <% } else { %>
+        <div class="anon-club-div">
+          <h1><%= title %> 🤫</h1>
+          <div class="q-and-a-div">
+            <h2>What is the anonClub?</h2>
+            <p>Members of the anonClub are able to see the username that created each story, as well as the date and time that each story was created. anonClub members <strong>CANNOT</strong> see the first/last name of other users, or any other account information from other users.</p>
+          </div>
+          <div class="q-and-a-div">
+            <h2>What's the point of the anonClub?</h2>
+            <p>The anonClub adds another layer of interactivity to the site. Members can identify users whose stories they're most interested in, and have a better shot at guessing whether a story is fact or fiction<sup>1</sup>.</p>
+          </div>
+          <div class="q-and-a-div">
+            <h2>How do I join the anonClub?</h2>
+            <% if (!currentUser.member) { %>
+              <p>Glad you asked! Prospective members need to know the secret password. If you know the password, submit it below and become an official anonClub member!</p>
+              <form action="/anonclub" method="POST">
+                <p>
+                  <label for="password">Password:</label>
+                  <input type="password" name="password" id="password" required>
+                </p>
+                <button type="button">Join the club!</button>
+              </form>
+            <% } else { %>
+              <p>You're already a member of the anonClub, <%= currentUser.username %>! Enjoy those exclusive privileges!</p>
+            <% } %>
+          </div>
+          <a href="/stories">&lt;&lt; Story depository</a>
+        </div>
+        <p class="footnote"><sup>1</sup>If that sounds like a stretch, it's because the <em>real</em> reason the anonClub exists is because this is a just silly web development project, and I needed an opportunity to practice with different levels of user rights / authorization ¯\_(ツ)_/¯</p>
+      <% } %>
+    </div>
+    <%- include('../partials/footer') %>
+  </body>
+</html>

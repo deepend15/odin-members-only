@@ -102,6 +102,9 @@ a:link {
 
 body {
   background-color: rgb(247, 247, 229);
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: min-content 1fr min-content;
 }
 
 button {
@@ -118,9 +121,13 @@ button:active {
   border-style: inset;
 }
 
+nav,
+footer {
+  background-color: rgb(204, 205, 248);
+}
+
 nav {
   padding: 15px;
-  background-color: rgb(204, 205, 248);
   font-size: 1.8rem;
   font-weight: 500;
   display: flex;
@@ -139,10 +146,22 @@ nav a:link {
   gap: 25px;
 }
 
+footer {
+  margin-top: 20px;
+  padding: 18px;
+  display: flex;
+  justify-content: center;
+}
+
+footer a {
+  text-decoration: underline;
+}
+
 .container {
+  padding: 20px;
   display: grid;
   justify-items: center;
-  padding: 20px;
+  align-items: start;
 }
 
 .index-div,
@@ -154,6 +173,13 @@ nav a:link {
   display: grid;
   justify-items: center;
   gap: 20px;
+}
+
+.no-access-div {
+  display: grid;
+  font-size: 1.8rem;
+  gap: 15px;
+  justify-items: center;
 }
 
 .index-div {
@@ -226,10 +252,8 @@ h2 {
   padding: 3px;
 }
 
-.sign-up-form input:focus-visible,
-.login-form input:focus-visible,
-.create-story-form input:focus-visible,
-.create-story-form textarea:focus-visible {
+input:focus-visible,
+textarea:focus-visible {
   outline: 2px solid purple;
   border-radius: 3px;
 }
@@ -436,8 +460,9 @@ h3 {
   border-radius: 6px;
 }
 
-.warning a:link {
+.warning a {
   text-decoration: underline;
+  color: rgb(29, 112, 176);
 }
 
 .create-story-form {
@@ -497,5 +522,69 @@ h3 {
 
 .border-credit {
   margin-top: -10px;
+  font-size: 1.4rem;
+}
+
+.anon-club-div {
+  width: 95%;
+  display: grid;
+  gap: 25px;
+  justify-items: start;
+}
+
+.anon-club-div h1 {
+  justify-self: center;
+}
+
+.q-and-a-div {
+  width: 100%;
+  display: grid;
+  gap: 5px;
+  line-height: 1.5;
+}
+
+.q-and-a-div h2 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.q-and-a-div form {
+  margin-top: 15px;
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+.q-and-a-div form p {
+  label {
+    font-size: 1.7rem;
+  }
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.q-and-a-div form input {
+  padding: 0 3px;
+}
+
+.q-and-a-div form button {
+  padding: 5px 25px;
+  font-size: 1.7rem;
+}
+
+.anon-club-div > a {
+  justify-self: center;
+}
+
+.footnote {
+  margin-top: 30px;
+  margin-bottom: -20px;
+  align-self: end;
+  width: 90%;
+  line-height: 1.5;
   font-size: 1.4rem;
 }

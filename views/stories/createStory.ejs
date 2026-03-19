@@ -10,15 +10,15 @@
     <%- include('../partials/nav') %>
     <div class="container">
       <div class="create-story-div">
-        <h1><%= title %></h1>
-        <%- include('../partials/errors') %>
         <% if (!locals.currentUser) { %>
           <%- include('../partials/noAccess') %>
         <% } else { %>
+          <h1><%= title %></h1>
+          <%- include('../partials/errors') %>
           <div class="create-story-container">
             <div class="create-story-left">
               <div class="warning">
-                <p>Be aware! anonClub members will be able to see that your username created this story, and the date that you created it. No other details of your account will be shared with anonClub members, and no other visitors to this site will be able to see this information. For more information, visit the anonClub <a href="/join-the-club">info page</a>.</p>
+                <p>Be aware! anonClub members will be able to see that your username created this story, and the date that you created it. No other details of your account will be shared with anonClub members, and no other visitors to this site will be able to see this information. For more information, visit the anonClub <a href="/anonclub">info page</a>.</p>
               </div>
               <div class="warning">
                 <p>While we encourage you to share whatever you please, we reserve the right to remove any posts containing hate speech or any information otherwise intended to cause harm.</p>
@@ -65,5 +65,6 @@
         <a href="/stories">&lt;&lt; Story depository</a>
       </div>
     </div>
+    <%- include('../partials/footer') %>
   </body>
 </html>
