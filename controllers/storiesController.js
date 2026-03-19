@@ -1,5 +1,6 @@
 import * as db from "../db/queries.js";
 import { body, validationResult, matchedData } from "express-validator";
+import { CustomNotFoundError } from "../errors/CustomNotFoundError.js";
 
 const storiesGet = async (req, res) => {
   if (req.query.currentUser) {
@@ -67,9 +68,12 @@ const createStoryPost = [
   },
 ];
 
-const viewStoryGet = async (req, res) => {
+const viewStoryGet = async (req, res, next) => {
   const { storyId } = req.params;
   const story = await db.getStoryByStoryID(Number(storyId));
+  if (!story) {
+    return next(new CustomNotFoundError("Page not found."));
+  }
   res.render("stories/viewStory", {
     story: story,
   });

@@ -399,8 +399,6 @@ h3 {
 }
 
 .indiv-story-btn:active {
-  /* background-color: rgb(239, 239, 246);
-  box-shadow: 0 0 8px rgb(193, 193, 193); */
   transform: scale(0.95);
 }
 
