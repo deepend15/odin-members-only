@@ -41,4 +41,28 @@ async function getAllStories() {
   return rows;
 }
 
-export { getUserByUsername, getUserByID, addUser, addStory, getAllStories };
+async function getStoriesByUserID(id) {
+  const { rows } = await pool.query(
+    `SELECT
+      stories.id AS story_id,
+      users.username,
+      stories.title,
+      stories.story,
+      stories.time
+    FROM stories
+    INNER JOIN users ON users.id = stories.user_id
+    WHERE stories.user_id = $1
+    ORDER BY time`,
+    [id],
+  );
+  return rows;
+}
+
+export {
+  getUserByUsername,
+  getUserByID,
+  addUser,
+  addStory,
+  getAllStories,
+  getStoriesByUserID,
+};

@@ -2,12 +2,26 @@ import * as db from "../db/queries.js";
 import { body, validationResult, matchedData } from "express-validator";
 
 const storiesGet = async (req, res) => {
+  if (req.query.currentUser) {
+    if (req.user) {
+      const stories = await db.getStoriesByUserID(req.user.id);
+      return res.render("stories/stories", {
+        title: "Story Depository",
+        stories: stories,
+        currentUserStories: true,
+        h2Content: `${req.user.username} - My Stories`,
+      });
+    }
+  }
   const stories = await db.getAllStories();
   console.log("Stories: ", stories);
   console.log(stories[0].time);
+  let h2Content;
+  if (req.user) h2Content = `👋 Hello, ${req.user.username}!`;
   res.render("stories/stories", {
     title: "Story Depository",
     stories: stories,
+    h2Content: h2Content,
   });
 };
 
@@ -49,7 +63,7 @@ const createStoryPost = [
   },
 ];
 
-// TODO NEXT: 
+// TODO NEXT:
 // --Change res.redirect logic in createStoryPost (& remove console.log)
 
 export { storiesGet, createStoryGet, createStoryPost };

@@ -12,12 +12,16 @@
       <div class="stories-div">
         <h1><%= title %></h1>
         <% if (locals.currentUser) { %>
-          <h2>&#128075; Hello, <%= currentUser.username %>!</h2>
+          <h2><%= h2Content %></h2>
           <div class="story-buttons-div">
-            <a href="/stories?user=<%= currentUser.username %>"><button>My stories</button></a>
+            <% if (locals.currentUserStories) { %>
+              <a href="/stories"><button>All stories</button></a>
+            <% } else { %>
+              <a href="/stories?currentUser=true %>"><button>My stories</button></a>
+            <% } %>
             <a href="/stories/create-story"><button>Create new story</button></a>
           </div>
-          <% if (!currentUser.member) { %>
+          <% if (!currentUser.member && !locals.currentUserStories) { %>
             <p>&#128064; tip: If you want to see who created each story, <a href="/join-the-club">join the anonClub</a>!</p>
           <% } %>
         <% } else { %>
@@ -26,23 +30,27 @@
         <div class="stories-container">
           <% if (stories.length > 0) { %>
             <% stories.forEach((story) => { %>
-              <button class="indiv-story-btn">
-                <div class="h3-div">
-                  <h3><%= story.title %></h3>
-                  <span><%= story.title %></span>
-                </div>
-                <pre><%= story.story %></pre>
-                <!-- <div class="secret-line">
-                  <p><%= story.username %></p>
-                  <p><%= story.time %></p>
-                </div> -->
-                <% if (locals.currentUser.member) { %>
-                  <div class="secret-line">
+              <a href="/stories/view-story?id=<%= story.story_id %>">
+                <button class="indiv-story-btn">
+                  <div class="h3-div">
+                    <h3><%= story.title %></h3>
+                    <span><%= story.title %></span>
+                  </div>
+                  <pre><%= story.story %></pre>
+                  <!-- <div class="secret-line">
                     <p><%= story.username %></p>
                     <p><%= story.time %></p>
-                  </div>
-                <% } %>
-                </button>
+                  </div> -->
+                  <% if (locals.currentUser) { %>
+                    <% if (locals.currentUser.member) { %>
+                      <div class="secret-line">
+                      <p><%= story.username %></p>
+                      <p><%= story.time %></p>
+                    </div>
+                    <% } %>
+                  <% } %>
+                  </button>
+              </a>
             <% }); %>
           <% } %>
         </div>
