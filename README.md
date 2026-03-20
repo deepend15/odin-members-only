@@ -1,7 +1,12 @@
-# node-express-template
+An app where users can submit/read anonymous posts (referred to in-app as "stories"). Any visitor to the site can read stories, but only users who have signed up for an account and are logged in can submit their own stories. Users can edit and delete their own stories.
 
-Intended for use as a basic template for Express projects that leverage a PostgreSQL database, and views via EJS.
+Additional layers of user rights / authorization include:
 
-Dependencies include: Express, EJS, express-validator, &amp; pg.
+- 'anonClub' members, who can see the username and date/time of submission for every story
+- admin users, who have access to the above, and in addition can delete any user's stories (not just their own)
 
-To get started, create a .env file in the project directory that includes the variables in [env.example](https://github.com/deepend15/node-express-template/blob/main/.env.example), update project name / description / all URL info in package.json, and run `npm install`.
+Users have the ability to update their account information, and, if they provide the correct secret password, can obtain the privileges listed above.
+
+To run the app, first deploy a local/production database, then run `node db/populatedb.js <db-url>`.
+
+See [.env.example](https://github.com/deepend15/odin-members-only/blob/main/.env.example) for the required environment variables.
