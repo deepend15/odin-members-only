@@ -18,6 +18,13 @@ const storiesGet = async (req, res) => {
       });
     }
   }
+  if (req.query.deleteConfirmation) {
+    if (req.user) {
+      return res.render("stories/deleteConfirm", {
+        title: "Delete Story",
+      });
+    }
+  }
   const stories = await db.getAllStories();
   stories.forEach((story) => {
     story.formattedDate = format(story.time, "MM/dd/yyyy");
@@ -79,7 +86,6 @@ const viewStoryGet = async (req, res, next) => {
     return next(new CustomNotFoundError("Page not found."));
   }
   story.formattedTimestamp = format(story.time, 'MMMM d, yyyy, h:mm a');
-  console.log(story);
   res.render("stories/viewStory", {
     story: story,
   });
@@ -91,7 +97,6 @@ const editStoryGet = async (req, res, next) => {
   if (!story) {
     return next(new CustomNotFoundError("Page not found."));
   }
-  console.log(story);
   res.render("stories/editStory", {
     title: "Edit Story",
     story: story,
@@ -119,4 +124,22 @@ const editStoryPost = [
   },
 ];
 
-export { storiesGet, createStoryGet, createStoryPost, viewStoryGet, editStoryGet, editStoryPost };
+const deleteStoryGet = async (req, res, next) => {
+  const { storyId } = req.params;
+  const story = await db.getStoryByStoryID(Number(storyId));
+  if (!story) {
+    return next(new CustomNotFoundError("Page not found."));
+  }
+  res.render("stories/deleteStory", {
+    title: "Delete Story",
+    story: story,
+  });
+}
+
+const deleteStoryPost = async (req, res) => {
+  const { storyId } = req.params;
+  await db.deleteStory(storyId);
+  res.redirect("/stories?deleteConfirmation=true");
+}
+
+export { storiesGet, createStoryGet, createStoryPost, viewStoryGet, editStoryGet, editStoryPost, deleteStoryGet, deleteStoryPost };

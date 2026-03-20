@@ -171,7 +171,8 @@ footer a {
 .create-story-div,
 .view-story-div,
 .my-account-div,
-.edit-story-div {
+.edit-story-div,
+.delete-story-div {
   display: grid;
   justify-items: center;
   gap: 20px;
@@ -186,7 +187,8 @@ footer a {
 
 .index-div,
 .view-story-div,
-.edit-story-div {
+.edit-story-div,
+.delete-story-div {
   width: min(1000px, 85%);
 }
 
@@ -533,7 +535,8 @@ h3 {
   margin: -8px 0;
 }
 
-.view-story-div > pre {
+.view-story-div > pre,
+.delete-story-div > pre {
   width: 90%;
   padding: 15px;
   background-color: white;
@@ -583,6 +586,29 @@ h3 {
 .edit-story-form button {
   justify-self: center;
   font-size: 1.8rem;
+}
+
+.delete-story-form {
+  margin-top: 10px;
+  display: grid;
+  gap: 20px;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.delete-story-form button {
+  font-size: 1.8rem;
+  justify-self: center;
+}
+
+.delete-story-div > a {
+  font-size: 1.8rem;
+} 
+
+.delete-story-div > p {
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: -10px;
 }
 
 .anon-club-div {

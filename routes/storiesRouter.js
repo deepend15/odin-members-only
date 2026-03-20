@@ -10,6 +10,14 @@ storiesRouter.post(
   "/view-story/:storyId/edit",
   storiesController.editStoryPost,
 );
+storiesRouter.get(
+  "/view-story/:storyId/delete",
+  storiesController.deleteStoryGet,
+);
+storiesRouter.post(
+  "/view-story/:storyId/delete",
+  storiesController.deleteStoryPost,
+);
 storiesRouter.get("/view-story/:storyId", storiesController.viewStoryGet);
 storiesRouter.get("/", storiesController.storiesGet);
 
