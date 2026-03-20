@@ -45,9 +45,9 @@ import "./passportConfig.js";
 app.use(passport.session());
 
 app.use((req, res, next) => {
-  console.log("Session:", req.session);
-  console.log(`Session ID: ${req.session.id}`);
-  console.log("User:", req.user);
+  // console.log("Session:", req.session);
+  // console.log(`Session ID: ${req.session.id}`);
+  // console.log("User:", req.user);
   res.locals.currentUser = req.user;
   next();
 });

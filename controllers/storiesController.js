@@ -29,7 +29,6 @@ const storiesGet = async (req, res) => {
   stories.forEach((story) => {
     story.formattedDate = format(story.time, "MM/dd/yyyy");
   });
-  console.log("Stories: ", stories);
   let h2Content;
   if (req.user) h2Content = `👋 Hello, ${req.user.username}!`;
   res.render("stories/stories", {
