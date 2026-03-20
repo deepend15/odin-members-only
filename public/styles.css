@@ -173,7 +173,8 @@ footer a {
 .my-account-div,
 .edit-story-div,
 .delete-story-div,
-.change-admin-div {
+.change-admin-div,
+.delete-account-div {
   display: grid;
   justify-items: center;
   gap: 20px;
@@ -817,6 +818,25 @@ h3 {
 .edit-account-div > .error-div {
   margin-top: 5px;
   margin-bottom: -10px;
+}
+
+.delete-account-div {
+  font-size: 1.8rem;
+}
+
+.delete-account-form {
+  margin-top: 5px;
+  display: grid;
+  gap: 25px;
+  text-align: center;
+}
+
+.delete-account-form > p:first-child {
+  font-size: 2rem;
+}
+
+.delete-account-form button {
+  justify-self: center;
 }
 
 .change-admin-div {

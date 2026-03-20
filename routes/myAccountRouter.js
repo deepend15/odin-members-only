@@ -20,6 +20,8 @@ myAccountRouter.post(
   myAccountController.editAccountPasswordPost,
 );
 myAccountRouter.get("/edit", myAccountController.editAccountGet);
+myAccountRouter.get("/delete-account", myAccountController.deleteAccountGet);
+myAccountRouter.post("/delete-account", myAccountController.deleteAccountPost);
 myAccountRouter.get("/admin-status", myAccountController.updateAdminStatusGet);
 myAccountRouter.post(
   "/admin-status",

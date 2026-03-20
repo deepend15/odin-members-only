@@ -12,13 +12,14 @@
       <% if (!locals.currentUser) { %>
         <%- include('../partials/noAccess') %>
       <% } else { %>
-        <div class="edit-account-div">
-          <h1><%= title %> ✏️</h1>
-          <p>What do you want to do?</p>
-          <a href="/my-account/edit/name-username"><button>update account name and/or username</button></a>
-          <a href="/my-account/edit/password"><button>update account password</button></a>
-          <a href="/my-account/delete-account"><button>delete my account</button></a>
-          <a href="/my-account">&lt;&lt; My account</a>
+        <div class="delete-account-div">
+          <h1><%= title %> 🚫</h1>
+          <form class="delete-account-form" action="/my-account/delete-account" method="POST">
+            <p>❗ Are you sure you want to delete your account?</p>
+            <p>All stories you have created will also be deleted.</p>
+            <button>Delete my account</button>
+          </form>
+          <a href="/my-account/edit">&lt;&lt; Cancel</a>
         </div>
       <% } %>
     </div>

@@ -113,6 +113,10 @@ async function deleteStory(storyID) {
   await pool.query("DELETE FROM stories WHERE id = $1", [storyID]);
 }
 
+async function deleteUser(userID) {
+  await pool.query("DELETE FROM users WHERE id = $1", [userID]);
+}
+
 export {
   getUserByUsername,
   getUserByID,
@@ -127,4 +131,5 @@ export {
   updatePassword,
   editStory,
   deleteStory,
+  deleteUser,
 };

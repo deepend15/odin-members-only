@@ -10,7 +10,7 @@
     <%- include('partials/nav') %>
     <div class="container">
       <div class="logout-div">
-        <p>You have successfully logged out.</p>
+        <p>You have successfully <%= (locals.accountDeleted) ? 'deleted your account.' : 'logged out.' %></p>
         <p><a href="/">&lt;&lt; Home</a></p>
         <p><a href="/stories">&lt;&lt; Story depository</a></p>
       </div>

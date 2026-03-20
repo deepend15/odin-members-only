@@ -43,7 +43,9 @@ const validateUser = [
           throw new Error();
         }
       }
-    }).withMessage("Username already in use. Please choose a different username."),
+    }).withMessage(
+      "Username already in use. Please choose a different username.",
+    ),
 ];
 
 const editAccountNamePost = [
@@ -86,15 +88,15 @@ const validatePassword = [
     .notEmpty().withMessage(`Password ${emptyErr}`)
     .isLength({ min: 8 }).withMessage("Password must be at least 8 characters.")
     .isLength({ max: 255 }).withMessage(`Password ${lengthErr}`)
-    .custom(value => {
+    .custom((value) => {
       const regex = /(?=.*[a-z])/;
       return regex.test(value);
     }).withMessage("Password must contain at least 1 lowercase letter.")
-    .custom(value => {
+    .custom((value) => {
       const regex = /(?=.*[A-Z])/;
       return regex.test(value);
     }).withMessage("Password must contain at least 1 uppercase letter.")
-    .custom(value => {
+    .custom((value) => {
       const regex = /(?=.*\d)/;
       return regex.test(value);
     }).withMessage("Password must contain at least 1 number."),
@@ -126,7 +128,7 @@ const editAccountPasswordPost = [
 ];
 
 const updateAdminStatusGet = (req, res) => {
-  let confirmation = false
+  let confirmation = false;
   if (req.query.updatedStatus) {
     confirmation = true;
   }
@@ -160,4 +162,32 @@ const updateAdminStatusPost = [
   },
 ];
 
-export { myAccountGet, editAccountGet, editAccountNameGet, editAccountNamePost, editAccountPasswordGet, editAccountPasswordPost, updateAdminStatusGet, updateAdminStatusPost };
+const deleteAccountGet = (req, res) => {
+  res.render("account/deleteAccount", {
+    title: "Delete Account",
+  });
+};
+
+const deleteAccountPost = async (req, res) => {
+  await db.deleteUser(req.user.id);
+  // 'stories' table will automatically cascade and delete all the user's stories without having to run an additional SQL command
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/log-out?accountDeleted=true");
+  });
+};
+
+export {
+  myAccountGet,
+  editAccountGet,
+  editAccountNameGet,
+  editAccountNamePost,
+  editAccountPasswordGet,
+  editAccountPasswordPost,
+  updateAdminStatusGet,
+  updateAdminStatusPost,
+  deleteAccountGet,
+  deleteAccountPost,
+};
