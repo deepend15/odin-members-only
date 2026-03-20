@@ -10,3 +10,5 @@ Users have the ability to update their account information, and, if they provide
 To run the app, first deploy a local/production database, then run `node db/populatedb.js <db-url>`.
 
 See [.env.example](https://github.com/deepend15/odin-members-only/blob/main/.env.example) for the required environment variables.
+
+Live link: https://anon-tales.up.railway.app/
