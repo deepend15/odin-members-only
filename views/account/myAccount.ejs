@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title><%= title %> | AnonTales</title>
+  </head>
+  <body>
+    <%- include('../partials/nav') %>
+    <div class="container">
+      <% if (!locals.currentUser) { %>
+        <%- include('../partials/noAccess') %>
+      <% } else { %>
+        <div class="my-account-div">
+          <h1><%= title %> 📁</h1>
+          <a href="/my-account/edit"><button>Edit account info</button></a>
+          <div class="account-info-div">
+            <div>
+              <p>Name:</p>
+              <p><%= currentUser.first_name %> <%= currentUser.last_name %></p>
+            </div>
+            <div>
+              <p>Username:</p>
+              <p><%= currentUser.username %></p>
+            </div>
+            <div>
+              <p class="account-pw">
+                Password<sup class="pw-superscript">?<span>The encrypted password shown here is a fixed 8 characters; it will not match the length of your actual account password (unless that also happens to be 8 characters).</span></sup>:
+              </p>
+              <p>********</p>
+            </div>
+            <div>
+              <p>anonClub membership status:</p>
+              <p><%= (currentUser.member) ? 'Member' : 'Inactive' %></p>
+            </div>
+            <div class="admin-div">
+              <div>
+                <p>Admin status:</p>
+                <p><%= (currentUser.admin) ? 'Admin user' : 'Non-admin user' %></p>
+              </div>
+              <a href="/my-account/change-admin-status">Update admin status</a>
+            </div>
+          </div>
+        </div>
+      <% } %>
+    </div>
+    <%- include('../partials/footer') %>
+  </body>
+</html>

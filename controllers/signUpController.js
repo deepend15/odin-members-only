@@ -78,6 +78,7 @@ const signUpPost = [
     const { firstName, lastName, username, password } = matchedData(req);
     const hashedPassword = await bcrypt.hash(password, 10);
     await db.addUser(firstName, lastName, username, hashedPassword);
+    // log in user immediately upon signup
     const user = await db.getUserByUsername(username);
     req.login(user, (err) => {
       if (err) return next(err);

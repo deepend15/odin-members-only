@@ -169,7 +169,8 @@ footer a {
 .login-div,
 .stories-div,
 .create-story-div,
-.view-story-div {
+.view-story-div,
+.my-account-div {
   display: grid;
   justify-items: center;
   gap: 20px;
@@ -524,7 +525,6 @@ h3 {
 .author-info {
   display: grid;
   gap: 10px;
-  /* justify-items: center; */
   margin: -8px 0;
 }
 
@@ -621,4 +621,111 @@ h3 {
   display: grid;
   gap: 25px;
   justify-items: center;
+}
+
+.my-account-div {
+  font-size: 1.8rem;
+  width: min(80%, 375px);
+}
+
+.account-info-div {
+  margin-top: 10px;
+  width: 100%;
+  display: grid;
+  gap: 20px;
+}
+
+.account-info-div > div {
+  background-color: white;
+  padding: 10px;
+  border-radius: 12px;
+  line-height: 1.5;
+  box-shadow: 0 0 12px rgb(231, 230, 230);
+}
+
+.account-info-div > div:not(.admin-div),
+.admin-div > div {
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+}
+
+.account-info-div > div > p:first-child,
+.admin-div > div > p:first-child {
+  font-weight: 500;
+}
+
+.pw-superscript {
+  position: relative;
+  color: rgb(29, 112, 176);
+}
+
+.pw-superscript > span {
+  display: none;
+  position: absolute;
+  width: 285px;
+  font-size: 1.4rem;
+  color: black;
+  font-weight: normal;
+  background-color: rgb(224, 224, 224);
+  bottom: 0;
+  left: 0;
+  transform: translate(-80px, 108%);
+  line-height: 1.5;
+  border: 1px solid gray;
+  padding: 5px;
+}
+
+.pw-superscript:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  span {
+    display: inline;
+  }
+}
+
+.admin-div {
+  display: grid;
+  gap: 10px;
+}
+
+.admin-div a {
+  font-size: 1.6rem;
+  justify-self: end;
+}
+
+.edit-account-div {
+  display: grid;
+  justify-items: center;
+  gap: 25px;
+  font-size: 1.8rem;
+  width: 100%;
+}
+
+.edit-account-form {
+  margin-top: 10px;
+  display: grid;
+  gap: 20px;
+  justify-items: center;
+  width: min(80%, 400px);
+}
+
+.edit-account-form > p {
+  width: 90%;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.edit-account-form > p > label {
+  width: 30%;
+}
+
+.edit-account-form > p > input {
+  width: 70%;
+  padding: 5px;
+}
+
+.edit-account-form button {
+  margin-top: 10px;
 }

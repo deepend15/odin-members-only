@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title><%= title %> | AnonTales</title>
+  </head>
+  <body>
+    <%- include('../partials/nav') %>
+    <div class="container">
+      <% if (!locals.currentUser) { %>
+        <%- include('../partials/noAccess') %>
+      <% } else { %>
+        <div class="edit-account-div">
+          <h1><%= title %> ✏️</h1>
+          <% if (locals.errors) { %>
+            <%- include('../partials/errors') %>
+          <% } %>
+          <form class="edit-account-form" action="/my-account/edit/name-username" method="POST">
+            <p>
+              <label for="firstName">First name:</label>
+              <input
+                type="text"
+                name="firstName"
+                id="firstName"
+                maxlength="255"
+                value="<%= firstNameValue %>"
+                autofocus
+                required
+              />
+            </p>
+            <p>
+              <label for="lastName">Last name:</label>
+              <input
+                type="text"
+                name="lastName"
+                id="lastName"
+                maxlength="255"
+                value="<%= lastNameValue %>"
+                required
+              />
+            </p>
+            <p>
+              <label for="username">Username:</label>
+              <input
+                type="text"
+                name="username"
+                id="username"
+                maxlength="255"
+                value="<%= usernameValue %>"
+                required
+              />
+            </p>
+            <button>Submit changes</button>
+          </form>
+          <a href="/my-account/edit">&lt;&lt; Cancel</a>
+        </div>
+      <% } %>
+    </div>
+    <%- include('../partials/footer') %>
+  </body>
+</html>
