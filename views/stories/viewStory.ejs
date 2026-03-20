@@ -13,7 +13,15 @@
         <a href="/stories">&lt;&lt; Story depository</a>
         <h1><%= story.title %></h1>
         <% if (locals.currentUser) { %>
-          <% if (locals.currentUser.member) { %>
+          <% if (story.username === currentUser.username) { %>
+            <div class="view-story-buttons-div">
+              <a href="/stories/view-story/<%= story.story_id %>/edit"><button>Edit story</button></a>
+              <% if (story.username === currentUser.username || currentUser.admin) { %>
+                <a href="/stories/view-story/<%= story.story_id %>/delete"><button>Delete story</button></a>
+              <% } %>
+            </div>
+          <% } %>
+          <% if (currentUser.member) { %>
             <div class="author-info">
               <p>Author: <%= story.username %></p>
               <p>Submitted on: <%= story.formattedTimestamp %></p>

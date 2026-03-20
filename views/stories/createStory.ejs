@@ -34,7 +34,7 @@
                     id="title"
                     maxlength="75"
                     placeholder="75 characters or less..."
-                    value="<% if (locals.titleValue) { %><%= titleValue %><% } %>"
+                    value="<%= (locals.titleValue) ? titleValue : '' %>"
                     autofocus
                     required
                   >
@@ -45,7 +45,6 @@
                     name="story"
                     id="story"
                     rows="6"
-                    placeholder="Share whatever you want!"
                     required
                   ><%= storyText %></textarea>
                 <% } else { %>

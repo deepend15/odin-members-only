@@ -97,6 +97,14 @@ async function updatePassword(password, userID) {
   ]);
 }
 
+async function editStory(newTitle, newStory, storyID) {
+  await pool.query("UPDATE stories SET title = $1, story = $2 WHERE id = $3", [
+    newTitle,
+    newStory,
+    storyID,
+  ]);
+}
+
 export {
   getUserByUsername,
   getUserByID,
@@ -108,4 +116,5 @@ export {
   addMembershipStatus,
   updateUserNameOrUsername,
   updatePassword,
+  editStory,
 };

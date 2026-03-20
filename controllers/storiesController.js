@@ -79,9 +79,44 @@ const viewStoryGet = async (req, res, next) => {
     return next(new CustomNotFoundError("Page not found."));
   }
   story.formattedTimestamp = format(story.time, 'MMMM d, yyyy, h:mm a');
+  console.log(story);
   res.render("stories/viewStory", {
     story: story,
   });
 };
 
-export { storiesGet, createStoryGet, createStoryPost, viewStoryGet };
+const editStoryGet = async (req, res, next) => {
+  const { storyId } = req.params;
+  const story = await db.getStoryByStoryID(Number(storyId));
+  if (!story) {
+    return next(new CustomNotFoundError("Page not found."));
+  }
+  console.log(story);
+  res.render("stories/editStory", {
+    title: "Edit Story",
+    story: story,
+  });
+}
+
+const editStoryPost = [
+  validateStory,
+  async (req, res) => {
+    const { storyId } = req.params;
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      const story = await db.getStoryByStoryID(Number(storyId));
+      return res.status(400).render("stories/editStory", {
+        title: "Edit Story",
+        story: story,
+        submittedTitle: req.body.title,
+        submittedStory: req.body.story,
+        errors: errors.array(),
+      });
+    }
+    const { title, story } = matchedData(req);
+    await db.editStory(title, story, storyId);
+    res.redirect(`/stories/view-story/${storyId}`);
+  },
+];
+
+export { storiesGet, createStoryGet, createStoryPost, viewStoryGet, editStoryGet, editStoryPost };

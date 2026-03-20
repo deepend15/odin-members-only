@@ -170,7 +170,8 @@ footer a {
 .stories-div,
 .create-story-div,
 .view-story-div,
-.my-account-div {
+.my-account-div,
+.edit-story-div {
   display: grid;
   justify-items: center;
   gap: 20px;
@@ -183,7 +184,9 @@ footer a {
   justify-items: center;
 }
 
-.index-div {
+.index-div,
+.view-story-div,
+.edit-story-div {
   width: min(1000px, 85%);
 }
 
@@ -514,12 +517,14 @@ h3 {
   margin-top: 10px;
 }
 
-.view-story-div {
-  width: min(1000px, 85%);
-}
-
 .view-story-div h1 {
   line-height: 1.5;
+}
+
+.view-story-buttons-div {
+  display: flex;
+  gap: 25px;
+  font-size: 1.8rem;
 }
 
 .author-info {
@@ -543,6 +548,41 @@ h3 {
 .border-credit {
   margin-top: -10px;
   font-size: 1.4rem;
+}
+
+.edit-story-form {
+  width: 100%;
+  display: grid;
+  gap: 25px;
+}
+
+.edit-story-form > p {
+  font-size: 1.8rem;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.edit-story-form label {
+  font-weight: 500;
+}
+
+.edit-story-form input {
+  width: 80%;
+  padding: 5px;
+  border-radius: 2px;
+}
+
+.edit-story-form textarea {
+  padding: 10px;
+  line-height: 1.7;
+  resize: vertical;
+  border-radius: 2px;
+}
+
+.edit-story-form button {
+  justify-self: center;
+  font-size: 1.8rem;
 }
 
 .anon-club-div {
