@@ -125,4 +125,39 @@ const editAccountPasswordPost = [
   },
 ];
 
-export { myAccountGet, editAccountGet, editAccountNameGet, editAccountNamePost, editAccountPasswordGet, editAccountPasswordPost };
+const updateAdminStatusGet = (req, res) => {
+  let confirmation = false
+  if (req.query.updatedStatus) {
+    confirmation = true;
+  }
+  res.render("account/changeAdminStatus", {
+    title: "Admin Users",
+    confirmation: confirmation,
+  });
+};
+
+const validateAdminPassword = [
+  body("password")
+    .notEmpty().withMessage("Password is required.")
+    .custom((value) => {
+      return value === process.env.ADMIN_PW;
+    }).withMessage("Incorrect password."),
+];
+
+const updateAdminStatusPost = [
+  validateAdminPassword,
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).render("account/changeAdminStatus", {
+        title: "Admin Users",
+        confirmation: false,
+        errors: errors.array(),
+      });
+    }
+    await db.addAdminStatus(req.user.id);
+    res.redirect("/my-account/admin-status?updatedStatus=true");
+  },
+];
+
+export { myAccountGet, editAccountGet, editAccountNameGet, editAccountNamePost, editAccountPasswordGet, editAccountPasswordPost, updateAdminStatusGet, updateAdminStatusPost };

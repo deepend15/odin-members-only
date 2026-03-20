@@ -20,6 +20,11 @@ myAccountRouter.post(
   myAccountController.editAccountPasswordPost,
 );
 myAccountRouter.get("/edit", myAccountController.editAccountGet);
+myAccountRouter.get("/admin-status", myAccountController.updateAdminStatusGet);
+myAccountRouter.post(
+  "/admin-status",
+  myAccountController.updateAdminStatusPost,
+);
 myAccountRouter.get("/", myAccountController.myAccountGet);
 
 export default myAccountRouter;

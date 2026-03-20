@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title><%= title %> | AnonTales</title>
+  </head>
+  <body>
+    <%- include('../partials/nav') %>
+    <div class="container">
+      <% if (!locals.currentUser) { %>
+        <%- include('../partials/noAccess') %>
+      <% } else { %>
+        <div class="change-admin-div">
+          <h1><%= title %> 🛠️</h1>
+          <% if (confirmation) { %>
+            <h2>You have successfully updated your admin status.</h2>
+          <% } else { %>
+            <p>Admin users have the ability to delete any user's stories, and they can see the username and date/time of submission for every story.</p>
+            <% if (currentUser.admin) { %>
+              <p>You are currently an admin user, <%= currentUser.username %>, and thus you have access to the above.</p>
+            <% } else { %>
+              <p>To become an admin user, enter the admin password below:</p>
+              <form class="change-admin-form" action="/my-account/admin-status" method="POST">
+                <p>
+                  <label for="password">Password:</label>
+                  <input type="password" name="password" id="password" autofocus required>
+                </p>
+                <% if (locals.errors) { %>
+                  <% errors.forEach(function(error) { %>
+                    <p class="error-line"><%= error.msg %></p class="error-line">
+                  <% }); %>
+                <% } %>
+                <button>Submit</button>
+              </form>
+            <% } %>
+          <% } %>
+          <a href="/my-account">&lt;&lt; My account</a>
+        </div>
+      <% } %>
+    </div>
+    <%- include('../partials/footer') %>
+  </body>
+</html>

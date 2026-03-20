@@ -9,12 +9,10 @@ const anonClubGet = (req, res) => {
 
 const validatePassword = [
   body("password")
-    .notEmpty()
-    .withMessage("Password is required.")
+    .notEmpty().withMessage("Password is required.")
     .custom((value) => {
       return value === process.env.ANON_CLUB_PW;
-    })
-    .withMessage("Incorrect password."),
+    }).withMessage("Incorrect password."),
 ];
 
 const anonClubPost = [

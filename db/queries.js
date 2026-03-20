@@ -83,6 +83,10 @@ async function addMembershipStatus(userID) {
   await pool.query("UPDATE users SET member = TRUE WHERE id = $1", [userID]);
 }
 
+async function addAdminStatus(userID) {
+  await pool.query("UPDATE users SET admin = TRUE WHERE id = $1", [userID]);
+}
+
 async function updateUserNameOrUsername(firstName, lastName, username, userID) {
   await pool.query(
     "UPDATE users SET first_name = $1, last_name = $2, username = $3 WHERE id = $4",
@@ -118,6 +122,7 @@ export {
   getStoriesByUserID,
   getStoryByStoryID,
   addMembershipStatus,
+  addAdminStatus,
   updateUserNameOrUsername,
   updatePassword,
   editStory,

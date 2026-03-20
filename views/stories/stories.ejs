@@ -21,7 +21,7 @@
             <% } %>
             <a href="/stories/create-story"><button>Create new story</button></a>
           </div>
-          <% if (!currentUser.member && !locals.currentUserStories) { %>
+          <% if (!currentUser.member && !currentUser.admin &&!locals.currentUserStories) { %>
             <p>&#128064; tip: If you want to see who created each story, <a href="/anonclub">join the anonClub</a>!</p>
           <% } %>
         <% } else { %>
@@ -38,7 +38,7 @@
                   </div>
                   <pre><%= story.story %></pre>
                   <% if (locals.currentUser) { %>
-                    <% if (locals.currentUser.member) { %>
+                    <% if (currentUser.member || currentUser.admin) { %>
                       <div class="secret-line">
                       <p><%= story.username %></p>
                       <p><%= story.formattedDate %></p>

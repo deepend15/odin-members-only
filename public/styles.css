@@ -172,7 +172,8 @@ footer a {
 .view-story-div,
 .my-account-div,
 .edit-story-div,
-.delete-story-div {
+.delete-story-div,
+.change-admin-div {
   display: grid;
   justify-items: center;
   gap: 20px;
@@ -603,7 +604,7 @@ h3 {
 
 .delete-story-div > a {
   font-size: 1.8rem;
-} 
+}
 
 .delete-story-div > p {
   font-size: 1.8rem;
@@ -816,4 +817,20 @@ h3 {
 .edit-account-div > .error-div {
   margin-top: 5px;
   margin-bottom: -10px;
+}
+
+.change-admin-div {
+  width: min(600px, 80%);
+  font-size: 1.7rem;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.change-admin-form {
+  display: grid;
+  gap: 20px;
+  justify-items: center;
+}
+.change-admin-form input {
+  padding: 0 5px;
 }
