@@ -729,3 +729,25 @@ h3 {
 .edit-account-form button {
   margin-top: 10px;
 }
+
+.edit-account-form.password-form > p {
+  width: 100%;
+}
+
+.edit-account-form.password-form > p > label {
+  width: 40%;
+}
+
+.edit-account-form.password-form > p > input {
+  width: 60%;
+}
+
+.edit-account-form.password-form > .password-div {
+  transform: translateX(0);
+  padding: 12px;
+}
+
+.edit-account-div > .error-div {
+  margin-top: 5px;
+  margin-bottom: -10px;
+}

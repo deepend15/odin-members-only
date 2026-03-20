@@ -10,11 +10,6 @@ const signUpGet = (req, res) => {
   }
   res.render("signUp/signUp", {
     title: "Sign Up",
-    firstNameValue: "",
-    lastNameValue: "",
-    usernameValue: "",
-    passwordValue: "",
-    confirmPasswordValue: "",
   });
 };
 

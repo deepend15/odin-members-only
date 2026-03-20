@@ -90,6 +90,13 @@ async function updateUserNameOrUsername(firstName, lastName, username, userID) {
   );
 }
 
+async function updatePassword(password, userID) {
+  await pool.query("UPDATE users SET password = $1 WHERE id = $2", [
+    password,
+    userID,
+  ]);
+}
+
 export {
   getUserByUsername,
   getUserByID,
@@ -100,4 +107,5 @@ export {
   getStoryByStoryID,
   addMembershipStatus,
   updateUserNameOrUsername,
+  updatePassword,
 };

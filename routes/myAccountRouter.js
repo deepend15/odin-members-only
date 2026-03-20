@@ -11,6 +11,14 @@ myAccountRouter.post(
   "/edit/name-username",
   myAccountController.editAccountNamePost,
 );
+myAccountRouter.get(
+  "/edit/password",
+  myAccountController.editAccountPasswordGet,
+);
+myAccountRouter.post(
+  "/edit/password",
+  myAccountController.editAccountPasswordPost,
+);
 myAccountRouter.get("/edit", myAccountController.editAccountGet);
 myAccountRouter.get("/", myAccountController.myAccountGet);
 

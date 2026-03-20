@@ -28,7 +28,7 @@
                 name="firstName"
                 id="firstName"
                 maxlength="255"
-                value="<%= firstNameValue %>"
+                value="<%= (locals.firstNameValue) ? firstNameValue : '' %>"
                 autofocus
                 required
               />
@@ -40,7 +40,7 @@
                 name="lastName"
                 id="lastName"
                 maxlength="255"
-                value="<%= lastNameValue %>"
+                value="<%= (locals.lastNameValue) ? lastNameValue : '' %>"
                 required
               />
             </p>
@@ -51,7 +51,7 @@
                 name="username"
                 id="username"
                 maxlength="255"
-                value="<%= usernameValue %>"
+                value="<%= (locals.usernameValue) ? usernameValue : '' %>"
                 required
               />
             </p>
@@ -70,7 +70,7 @@
                 type="password"
                 name="password"
                 id="password"
-                value="<%= passwordValue %>"
+                value="<%= (locals.passwordValue) ? passwordValue : '' %>"
                 required
               />
             </p>
@@ -80,7 +80,7 @@
                 type="password"
                 name="confirmPassword"
                 id="confirmPassword"
-                value="<%= confirmPasswordValue %>"
+                value="<%= (locals.confirmPasswordValue) ? confirmPasswordValue : '' %>"
                 required
               />
             </p>

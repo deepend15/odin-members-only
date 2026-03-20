@@ -1,5 +1,6 @@
 import * as db from "../db/queries.js";
 import { body, validationResult, matchedData } from "express-validator";
+import bcrypt from "bcryptjs";
 
 const myAccountGet = (req, res) => {
   res.render("account/myAccount", {
@@ -69,4 +70,59 @@ const editAccountNamePost = [
   },
 ];
 
-export { myAccountGet, editAccountGet, editAccountNameGet, editAccountNamePost };
+const editAccountPasswordGet = (req, res) => {
+  let confirmationScreen = false;
+  if (req.query.confirm) {
+    confirmationScreen = true;
+  }
+  res.render("account/editPassword", {
+    title: "Edit Account > Password",
+    confirmationScreen: confirmationScreen,
+  });
+};
+
+const validatePassword = [
+  body("password")
+    .notEmpty().withMessage(`Password ${emptyErr}`)
+    .isLength({ min: 8 }).withMessage("Password must be at least 8 characters.")
+    .isLength({ max: 255 }).withMessage(`Password ${lengthErr}`)
+    .custom(value => {
+      const regex = /(?=.*[a-z])/;
+      return regex.test(value);
+    }).withMessage("Password must contain at least 1 lowercase letter.")
+    .custom(value => {
+      const regex = /(?=.*[A-Z])/;
+      return regex.test(value);
+    }).withMessage("Password must contain at least 1 uppercase letter.")
+    .custom(value => {
+      const regex = /(?=.*\d)/;
+      return regex.test(value);
+    }).withMessage("Password must contain at least 1 number."),
+  body("confirmPassword")
+    .notEmpty().withMessage(`Password confirmation ${emptyErr}`)
+    .custom((value, { req }) => {
+      return value === req.body.password;
+    }).withMessage("Passwords do not match."),
+];
+
+const editAccountPasswordPost = [
+  validatePassword,
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).render("account/editPassword", {
+        title: "Edit Account > Password",
+        passwordValue: req.body.password,
+        confirmPasswordValue: req.body.confirmPassword,
+        confirmationScreen: false,
+        errors: errors.array(),
+      });
+    }
+    const { password } = matchedData(req);
+    const hashedPassword = await bcrypt.hash(password, 10);
+    await db.updatePassword(hashedPassword, req.user.id);
+    res.redirect("/my-account/edit/password?confirm=true");
+  },
+];
+
+export { myAccountGet, editAccountGet, editAccountNameGet, editAccountNamePost, editAccountPasswordGet, editAccountPasswordPost };
