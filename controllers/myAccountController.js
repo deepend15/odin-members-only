@@ -168,7 +168,7 @@ const deleteAccountGet = (req, res) => {
   });
 };
 
-const deleteAccountPost = async (req, res) => {
+const deleteAccountPost = async (req, res, next) => {
   await db.deleteUser(req.user.id);
   // 'stories' table will automatically cascade and delete all the user's stories without having to run an additional SQL command
   req.logout((err) => {

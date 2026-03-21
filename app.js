@@ -30,6 +30,7 @@ app.use(
   session({
     store: new PGSession({
       pool: pool,
+      createTableIfMissing: true,
     }),
     secret: process.env.SECRET,
     resave: false,
